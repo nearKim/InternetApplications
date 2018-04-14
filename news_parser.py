@@ -2,27 +2,24 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import nltk
 
-
-
 print('-----------------------------------\n#1.1 Basic BeutifulSoup\n-----------------------------------')
 
-# 1-1. print title, author, date, video title, article content using BeautifulSoup
+# 1-1. BeutifulSoup을 이용하여 기사의 title, author, date, video title, article content 를 출력
 url = 'http://money.cnn.com/2018/04/02/technology/mark-zuckerberg-tim-cook-facebook-apple/index.html'
-
 
 data = urlopen(url).read()
 doc = BeautifulSoup(data, 'html.parser')
 
-title = doc.find( "h1", class_="article-title speakable").string
+title = doc.find("h1", class_="article-title speakable").string
 print("Title: ", title)
 
-author = doc.find("span", class_ = "byline").string
+author = doc.find("span", class_="byline").string
 print("Author: ", author)
 
-date = doc.find("span", class_ = "cnnDateStamp").string
+date = doc.find("span", class_="cnnDateStamp").string
 print("Date: ", date)
 
-video_title = doc.find(class_ = "js-vid-hed-vid0 cnnHeadline").string;
+video_title = doc.find(class_="js-vid-hed-vid0 cnnHeadline").string;
 print("Video title: ", video_title)
 
 content = ''
@@ -39,8 +36,9 @@ print('''
 
 ''')
 
-# 1-2. Tokenize news article content by words
-print('-----------------------------------\n#1.2 Tokenize article content by words\n-----------------------------------')
+# 1-2. 단어 단위로 뉴스 기사를 토큰화
+print(
+    '-----------------------------------\n#1.2 Tokenize article content by words\n-----------------------------------')
 tokenized_words = nltk.tokenize.word_tokenize(content)
 print(tokenized_words)
 
@@ -50,8 +48,7 @@ print('''
 
 ''')
 
-
-# 1-3. POS-Tag tokenized words and sort POS by frequency
+# 1-3. 토큰화된 단어들을 POS-Tag 하고 빈도수 별로 정렬
 print('--------------------------------\n#1.3 POS-tag tokenized words\n--------------------------------')
 tagged_list = nltk.pos_tag(tokenized_words)
 print(tagged_list)
@@ -63,17 +60,18 @@ print('''
 
 dictionary = dict()
 for tag in tagged_list:
-    if(tag[1] in dictionary) :
+    if tag[1] in dictionary:
         # POS is in the dictionary
         pass
-    else :
+    else:
         # POS is not in the dictionary
         POScount = sum(x[1].count(tag[1]) for x in tagged_list)
-        dictionary.update({tag[1] : POScount})
+        dictionary.update({tag[1]: POScount})
 
-#dictionary의 빠른 정렬을 위한 operator 모듈을 import
+# dictionary 의 빠른 정렬을 위한 operator 모듈을 import
 import operator
-sortedArray = sorted(dictionary.items(), key = operator.itemgetter(1), reverse=True)
+
+sortedArray = sorted(dictionary.items(), key=operator.itemgetter(1), reverse=True)
 
 print("_______\nPOS : freq\n_________")
 for d in sortedArray:

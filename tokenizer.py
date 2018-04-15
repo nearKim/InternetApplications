@@ -7,14 +7,21 @@ def tokenizer(text):
 
 
 # 2-3에서 마침표 앞,뒤,중간에 한글자만 있는지 확인하기 위한 메소드
-# 짝수번째 글자가 모두 ','면 'true', 나머지 경우는 'false' 반환
+# 짝수번째 글자가 모두 '.'가 아니면 'false'이고
+# 홀수번째 글자가 모두 '.'면 'false'반환,
+# 단어의 글자수가 홀수개이면 'false'반환
 def acronym(word):
     a = 'true'
     if len(word) % 2 == 0:
         a = 'false'
     else:
-        for i in range(1, int((len(word) - 1) / 2)):
+        for i in range(1, int((len(word) - 1) / 2) + 1):
             if word[2 * i - 1] != '.':
+                # 짝수번째 자리 중 마침표가 아닌 문자 존재
+                a = 'false'
+        for i in range(0, int((len(word) - 1) / 2) + 1):
+            if word[2 * i] == '.':
+                # 모든 홀수번째 자리가 마침표
                 a = 'false'
     return a
 

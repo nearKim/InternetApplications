@@ -71,7 +71,9 @@ for tag in tagged_list:
 # dictionary 의 빠른 정렬을 위한 operator 모듈을 import
 import operator
 
-sortedArray = sorted(dictionary.items(), key=operator.itemgetter(1), reverse=True)
+sortedArray = sorted(dictionary.items(),
+                     key=operator.itemgetter(1),
+                     reverse=True)
 
 print("_______\nPOS : freq\n_________")
 for d in sortedArray:

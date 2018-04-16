@@ -2,6 +2,10 @@ from nltk.tokenize import word_tokenize
 
 with open("bible.txt", 'r') as f:
     text = f.read()
+
+# 3-2
+# 'war-and-peace.txt'를 읽어들여 지프의 법칙을 확인.
+# bible과 동일한 변수들을 사용하므로 일단 주석처리 함. 결과는 보고서에 함께 제출.
 # with open("war-and-peace.txt", 'r', encoding='utf-8') as f:
 #    text = f.read()
 

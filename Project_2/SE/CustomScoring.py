@@ -231,7 +231,33 @@ def intappscorer(tf, idf, cf, qf, dc, fl, avgfl, param):
     # avgfl - average field length across documents in collection
     # param - free parameter
     # TODO - Define your own scoring function
-    return tf
+    K1 = 0.4
+    B = 0.4
+
+    bm25_score = idf * ((tf * (K1 + 1)) / (tf + K1 * ((1 - B) + B * fl / avgfl)))
+
+    prior = tf / fl
+    post = (tf + 1.0) / (fl + 1.0)
+    invpriorcol = dc * avgfl / cf
+    norm = tf * log(post / prior)
+    dfree_score = qf * norm * (tf * (log(prior * invpriorcol))
+                               + (tf + 1.0) * (log(post * invpriorcol))
+                               + 0.5 * log(post / prior))
+
+    c = 3.5
+    rec_log2_of_e = 1.0 / log(2)
+    TF = tf * log(1.0 + (c * avgfl) / fl)
+    norm = 1.0 / (TF + 1.0)
+    f = cf / dc
+    pl2_score = norm * qf * (TF * log(1.0 / f)
+                             + f * rec_log2_of_e
+                             + 0.5 * log(2 * pi * TF)
+                             + TF * (log(TF) - rec_log2_of_e))
+
+    total_score = 0.0 * bm25_score + 0 * dfree_score + 1 * pl2_score
+    # total_score = 0.6 * bm25_score + 0.05 * dfree_score + 2 * pl2_score
+
+    return total_score
 
 
 class ScoringFunction(WeightingModel):

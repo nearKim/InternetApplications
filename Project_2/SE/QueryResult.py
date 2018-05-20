@@ -49,3 +49,26 @@ def getSearchEngineResult(query_dict):
 
             result_dict[qid] = [result.fields()['docID'] for result in results]
     return result_dict
+
+
+def getRandom15SearchResult(query_dict):
+    result_dict = {}
+    ix = index.open_dir("index")
+
+    with ix.searcher(weighting=scoring.ScoringFunction()) as searcher:
+        parser = QueryParser("contents", schema=ix.schema, group=OrGroup.factory(0.4))
+
+        from nltk.stem import WordNetLemmatizer
+
+        lm = WordNetLemmatizer()
+        query_dict = {k: split_stem(lemmatizer=lm, value=v) for k, v in query_dict.items()}
+
+        import random
+        rand_15 = random.sample(range(1, 94), 15)
+
+        for qid in rand_15:
+            query = parser.parse(query_dict[qid])
+            results = searcher.search(query, limit=None)
+            result_dict[qid] = [result.fields()['docID'] for result in results]
+        print("Random 15 queries: " + ",".join(str(x) for x in rand_15))
+    return result_dict

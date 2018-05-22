@@ -6,12 +6,13 @@ import CustomScoring as scoring
 
 def split_stem(stemmer=None, lemmatizer=None, stem_fn=None, value=None):
     '''
-    User Added Method
-    :param stemmer:
-    :param lemmatizer:
-    :param stem_fn:
-    :param value:
-    :return:
+    Split given string query value and then Stem or lemmatize it.
+    Union the result set with the original query token set and return modified(unified) query string.
+    :param stemmer: Stemmer class in which is used stemming procedure.
+    :param lemmatizer: Lemmatizer class in which is used lemmatizing procedure.
+    :param stem_fn: Stemmer function which is for stemmer function provided by Whoosh itself
+    :param value: String parameter which should be stemmed or lemmatized.
+    :return: Stemmed or lemmatized query string
     '''
     stemmed_set = set()
     value_set = set(value.lower().split())
@@ -58,11 +59,13 @@ def getSearchEngineResult(query_dict):
         #             results = searcher.search(query, limit=None)
 
         #             result_dict[k] = [result.fields()['docID'] for result in results]
+
+        # Use PorterStemmer2 algorithm for stemming. Document index is made with this one.
         from whoosh.lang.porter2 import stem as ps2
         from whoosh.lang.porter import stem as ps1
 
+        # New query_dict applying split_stem() method to every query string
         query_dict = {k: split_stem(stem_fn=ps2, value=v) for k, v in query_dict.items()}
-        #         query_dict = {k: ps2(v.lower()) for k,v in query_dict.items()}
         for qid, q in query_dict.items():
             query = parser.parse(q)
             results = searcher.search(query, limit=None)
@@ -72,19 +75,24 @@ def getSearchEngineResult(query_dict):
 
 
 def getRandom15SearchResult(query_dict):
+    """
+    Get Random Search results for checking variance, max and min value of BPREF
+    Query Number 8,50,59 should be avoided hence those queries are only related to one document.
+    :param query_dict: standard query_dict
+    :return: result dictionary which contains every info about search result
+    """
     result_dict = {}
     ix = index.open_dir("index")
 
     with ix.searcher(weighting=scoring.ScoringFunction()) as searcher:
         parser = QueryParser("contents", schema=ix.schema, group=OrGroup.factory(0.4))
 
-        from nltk.stem import WordNetLemmatizer
-
-        lm = WordNetLemmatizer()
-        query_dict = {k: split_stem(lemmatizer=lm, value=v) for k, v in query_dict.items()}
+        from whoosh.lang.porter2 import stem as ps2
+        query_dict = {k: split_stem(stem_fn=ps2, value=v) for k, v in query_dict.items()}
 
         import random
-        rand_15 = random.sample(range(1, 94), 15)
+        r = [i for i in range(1, 94) if i not in [8, 50, 59]]
+        rand_15 = random.sample(r, 15)
 
         for qid in rand_15:
             query = parser.parse(query_dict[qid])

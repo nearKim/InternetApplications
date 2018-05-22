@@ -6,6 +6,7 @@ from whoosh.lang.snowball import english
 from whoosh.lang.porter2 import stem
 # from whoosh.lang.paicehusk import PaiceHuskStemmer
 
+# Use PorterStemmer2 Algorithm in indexing
 stem_ana = StemmingAnalyzer(stemfn=stem)
 
 schema = Schema(docID=NUMERIC(stored=True), contents=TEXT(analyzer=stem_ana))

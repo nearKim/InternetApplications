@@ -254,8 +254,9 @@ def intappscorer(tf, idf, cf, qf, dc, fl, avgfl, param):
                              + 0.5 * log(2 * pi * TF)
                              + TF * (log(TF) - rec_log2_of_e))
 
-    total_score = 0.5 * bm25_score + 0.04 * dfree_score + 2.0 * pl2_score
-    return pl2_score
+    # total_score = 0.5 * bm25_score + 0.04 * dfree_score + 2.0 * pl2_score
+    total_score = 0.2 * bm25_score + 1.2 * pl2_score
+    return total_score
 
 
 class ScoringFunction(WeightingModel):

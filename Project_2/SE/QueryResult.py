@@ -4,24 +4,6 @@ from whoosh.qparser import QueryParser, OrGroup
 import CustomScoring as scoring
 
 
-def split_stem(stemmer=None, lemmatizer=None, value=None):
-    stemmed_set = set()
-    value_set = set(value.lower().split())
-
-    for entry in value.lower().split():
-        if lemmatizer:
-            # Make plural nouns to singular ones
-            # print(entry.strip() +"=====>" + lemmatizer.lemmatize(entry))
-            stemmed_set.add(lemmatizer.lemmatize(entry))
-        else:
-            stemmed_set.add(stemmer.stem(entry))
-    tot_set = stemmed_set.union(value_set)
-    re_query = ' '.join(tot_set)
-
-    # print(re_query)
-    return re_query
-
-
 def split_stem(stemmer=None, lemmatizer=None, stem_fn=None, value=None):
     '''
     User Added Method

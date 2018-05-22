@@ -1,6 +1,7 @@
 import numpy as np
 from QueryResult import getSearchEngineResult, getRandom15SearchResult
 
+
 def readQueryFile(filename):
     query_dict = {}
 
@@ -10,7 +11,7 @@ def readQueryFile(filename):
         for query in queries:
             br = query.find('\n')
             qID = int(query[:br])
-            q = query[br+1:]
+            q = query[br + 1:]
             query_dict[qID] = q
 
     return query_dict
@@ -65,6 +66,12 @@ def evaluate(query_dict, relevent_dict, results_dict):
 
 
 def evaluate15(relevent_dict, results_dict):
+    '''
+    User added Method
+    :param relevent_dict:
+    :param results_dict:
+    :return:
+    '''
     BPREF = []
 
     for queryID in results_dict.keys():
@@ -92,17 +99,24 @@ def evaluate15(relevent_dict, results_dict):
     print(np.mean(BPREF))
     return np.mean(BPREF)
 
+
 if __name__ == '__main__':
     query_dict = readQueryFile('doc/query.txt')
     relevant_dict = getGroundtruthRelevance(query_dict.keys())
-    # results_dict = getSearchEngineResult(query_dict)
-    # evaluate(query_dict, relevant_dict, results_dict)
+    results_dict = getSearchEngineResult(query_dict)
+    evaluate(query_dict, relevant_dict, results_dict)
 
-    # For randomly selected 15 queries, measure BPREF for 10 times
-    result = []
-    for _ in range(20):
-        results_dict = getRandom15SearchResult(query_dict)
-        result.append(evaluate15(relevant_dict, results_dict))
-    print("Current Variance: " + str(np.var(result)))
-    print("Max: " + str(np.max(result)))
-    print("Min: " + str(np.min(result)))
+    # For testing correlations between scoring variables
+    # import pandas as pd
+    # tmp = {'bm': BM25_LIST, 'pl': PL2_LIST, 'DF': DFREE_LIST}
+    # df = pd.DataFrame(tmp)
+    # print(df.describe())
+
+    # For randomly selected 15 queries, measure BPREF for 20 times
+    # result = []
+    # for _ in range(20):
+    #     results_dict = getRandom15SearchResult(query_dict)
+    #     result.append(evaluate15(relevant_dict, results_dict))
+    # print("Current Variance: " + str(np.var(result)))
+    # print("Max: " + str(np.max(result)))
+    # print("Min: " + str(np.min(result)))

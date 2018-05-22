@@ -1,8 +1,14 @@
 import os.path
 from whoosh.index import create_in
 from whoosh.fields import Schema, TEXT, NUMERIC
+from whoosh.analysis import StemmingAnalyzer
+from whoosh.lang.snowball import english
+from whoosh.lang.porter2 import stem
+# from whoosh.lang.paicehusk import PaiceHuskStemmer
 
-schema = Schema(docID=NUMERIC(stored=True), contents=TEXT)
+stem_ana = StemmingAnalyzer(stemfn=stem)
+
+schema = Schema(docID=NUMERIC(stored=True), contents=TEXT(analyzer=stem_ana))
 index_dir = "index"
 
 if not os.path.exists(index_dir):

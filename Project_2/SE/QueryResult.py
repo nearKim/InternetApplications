@@ -43,6 +43,7 @@ def getSearchEngineResult(query_dict):
         # TODO - Define your own query parser
         parser = QueryParser("contents", schema=ix.schema, group=OrGroup)
 
+        # DEPRECATED: POS tag
         #         for k,v in query_dict.items():
         #             v = v.replace(".", "")
         #             nouns = []
@@ -70,6 +71,7 @@ def getSearchEngineResult(query_dict):
 
         # New query_dict applying split_stem() method to every query string
         query_dict = {k: split_stem(stem_fn=ps2, value=v) for k, v in query_dict.items()}
+
         for qid, q in query_dict.items():
             query = parser.parse(q)
             results = searcher.search(query, limit=None)
@@ -77,8 +79,8 @@ def getSearchEngineResult(query_dict):
             result_dict[qid] = [result.fields()['docID'] for result in results]
 
             # Expand query by k words
-            # For this example, look for 5 top ranked documents and expand query by 2 words
-            query_expansion = parse_document(result_dict[qid], 5, 2)
+            # For this example, look for 5 top ranked documents and expand query by 1 words
+            query_expansion = parse_document(result_dict[qid], 3, 1)
             expand_set = set([ps2(word[0]) for word in query_expansion]).union(set([word[0] for word in query_expansion]))
             q_set = set(q.split())
 
@@ -151,7 +153,7 @@ def getRandom15SearchResult(query_dict):
             results = searcher.search(query, limit=None)
             result_dict[qid] = [result.fields()['docID'] for result in results]
 
-            query_expansion = parse_document(result_dict[qid], 5, 3)
+            query_expansion = parse_document(result_dict[qid], 3, 2)
             expand_set = set([ps2(word[0]) for word in query_expansion]).union(
                 set([word[0] for word in query_expansion]))
             q_set = set(q.split())

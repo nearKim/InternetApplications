@@ -38,7 +38,6 @@ def getGroundtruthRelevance(query_ids):
 
 
 def evaluate(query_dict, relevent_dict, results_dict):
-    print("Evaluate Every Query...")
     BPREF = []
 
     for queryID in query_dict.keys():
@@ -72,7 +71,6 @@ def evaluate15(relevent_dict, results_dict):
     Must be called after calling QueryResult.getRandom15SearchResult()
     '''
     BPREF = []
-    print("Evaluate 15 Queries...")
     for queryID in results_dict.keys():
         relevantCount = 0
         nonRelevantCount = 0
@@ -114,4 +112,5 @@ if __name__ == '__main__':
     #     result.append(evaluate15(relevant_dict, results_dict))
     # print("Current Variance: " + str(np.var(result)))
     # print("Max: " + str(np.max(result)))
+    # print("Mean: " + str(np.mean(result)))
     # print("Min: " + str(np.min(result)))

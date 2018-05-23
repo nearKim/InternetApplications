@@ -15,9 +15,12 @@ def split_stem(stemmer=None, lemmatizer=None, stem_fn=None, value=None):
     :return: Stemmed or lemmatized query string
     '''
     stemmed_set = set()
-    value_set = set(value.lower().split())
+    if type(value) is set:
+        value_set = value
+    else:
+        value_set = set(value.lower().split())
 
-    for entry in value.lower().split():
+    for entry in value_set:
         if lemmatizer:
             # Make plural nouns to singular ones
             stemmed_set.add(lemmatizer.lemmatize(entry))
@@ -33,6 +36,7 @@ def split_stem(stemmer=None, lemmatizer=None, stem_fn=None, value=None):
 
 def getSearchEngineResult(query_dict):
     result_dict = {}
+    tot_result_dict = {}
     ix = index.open_dir("index")
 
     with ix.searcher(weighting=scoring.ScoringFunction()) as searcher:
@@ -71,7 +75,43 @@ def getSearchEngineResult(query_dict):
             results = searcher.search(query, limit=None)
 
             result_dict[qid] = [result.fields()['docID'] for result in results]
-    return result_dict
+
+            # Expand query by one word
+            query_expansion = parse_document(result_dict[qid], 5, 2)
+            expand_set = set([ps2(word[0]) for word in query_expansion]).union(set([word[0] for word in query_expansion]))
+            q_set = set(q.split())
+
+            unique_set = expand_set - q_set
+            q += " " + " ".join(unique_set)
+
+            tot_query = parser.parse(q)
+            tot_results = searcher.search(tot_query, limit=None)
+
+            tot_result_dict[qid] = [result.fields()['docID'] for result in tot_results]
+
+    return tot_result_dict
+
+
+def parse_document(related_doc_list, n, k):
+    from whoosh.lang.stopwords import stoplists
+    from collections import Counter
+
+    stop_words = stoplists["en"]
+    nonstop_words = []
+    with open('doc/document.txt', 'r') as f:
+        text = f.read()
+        docs = text.split('   /\n')[:-1]
+        for doc in docs:
+            br = doc.find('\n')
+            docID = int(doc[:br])
+            doc_text = doc[br + 1:]
+
+            if docID in related_doc_list[:n]:
+                nonstop_words.extend([word for word in doc_text.split() if word not in stop_words])
+
+        # key: words, value: occurrence
+        counter = Counter(nonstop_words)
+        return counter.most_common(k)
 
 
 def getRandom15SearchResult(query_dict):
@@ -82,6 +122,7 @@ def getRandom15SearchResult(query_dict):
     :return: result dictionary which contains every info about search result
     """
     result_dict = {}
+    tot_result_dict ={}
     ix = index.open_dir("index")
 
     with ix.searcher(weighting=scoring.ScoringFunction()) as searcher:
@@ -95,8 +136,23 @@ def getRandom15SearchResult(query_dict):
         rand_15 = random.sample(r, 15)
 
         for qid in rand_15:
-            query = parser.parse(query_dict[qid])
+            q = query_dict[qid]
+            query = parser.parse(q)
             results = searcher.search(query, limit=None)
             result_dict[qid] = [result.fields()['docID'] for result in results]
+
+            query_expansion = parse_document(result_dict[qid], 5, 3)
+            expand_set = set([ps2(word[0]) for word in query_expansion]).union(
+                set([word[0] for word in query_expansion]))
+            q_set = set(q.split())
+
+            unique_set = expand_set - q_set
+            q += " " + " ".join(unique_set)
+
+            tot_query = parser.parse(q)
+            tot_results = searcher.search(tot_query, limit=None)
+
+            tot_result_dict[qid] = [result.fields()['docID'] for result in tot_results]
+
         print("Random 15 queries: " + ",".join(str(x) for x in rand_15))
-    return result_dict
+    return tot_result_dict

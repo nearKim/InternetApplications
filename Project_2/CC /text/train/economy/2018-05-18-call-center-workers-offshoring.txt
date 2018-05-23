@@ -1,0 +1,51 @@
+﻿To stay competitive, US call centers are training workers to be super agents
+Manufacturing isn't the only sector that has sent American jobs overseas over the past decade.
+It has also been happening in the service sector. US companies have shipped thousands of call center jobs to countries like India and the Philippines, where labor is cheap and English skills are good enough to answer basic questions from halfway around the world.
+
+According to data collected by the Site Selection Group, a real estate consulting firm, the pace of call center jobs added in the rest of the world has exceeded those created in the United States since 2014. And that doesn't count the nearly 18,200 jobs lost in 2017 from call centers closing in the United States.Now, though, the economic winds are slowly starting to push call center jobs back toward America's shores. The workers who remain in the United States will be better trained to deal with customer needs, analysts and industry executives say — and likely be paid better as a result.
+
+This will be thanks, in part, to automation, which has also helped the American manufacturing workforce become more competitive with foreign markets. Even though less human labor is required overall, automated technology helps make each employee more productive and makes it more cost-effective to keep jobs in America.
+
+Related: In rural America, building the internet for everyone has stalled
+
+In the call center world, the introduction of interactive voice response technology — which asks callers for basic information about who they are and what they want before routing them to an agent — has already cut down the amount of staff time needed to resolve each inquiry.
+
+Now, smarter bots can interact with customers both online and over the phone, taking care of the simpler questions that companies used to send to workers overseas.
+
+"The chatbots are replacing the offshore contact centers that are pure rote," said Priya Iyer, the CEO of Vee24, which sells customer engagement software that helps power chatbots and other platforms. "They will always get the answers right."But for questions that stump the bots, companies want to make sure interactions are as useful as possible, especially as more customers look for help while shopping online. So they're investing in training US workers to better answer their questions, keep them happy and even sell them more stuff — all of which helps justify paying higher wages.
+
+Iyer imagines a Home Depot staff member who could tell you what you need to start a do-it-yourself remodel with the help of videoconferencing, for example, or a stylist from a retailer who could help you choose an outfit using virtual reality.
+
+More companies are also employing "super agents" who can deal with all of a customer's problems at once, rather than routing them all over the world for each individual question. Others have agents who can answer calls from many businesses at a time, using special dispatching systems that pull up scripts for different clients as inquiries come in.
+
+Pulling that off, however, requires companies to spend money on what has traditionally been thought of as a "low-skilled" workforce. In today's tight labor market, it also helps if they provide workers with an incentive to stick around, such as a chance to advance at the company or earn more — perks typically offered to in-house workers, rather than outsourced ones.
+
+Related: American workers who lose jobs in a trade war won't get much help
+
+"If you're going to have a traditional churn-and-burn type call center, you're going to really struggle to attract candidates," said David Hadobas, president of CCNG, Inc., a Fort Worth, Texas-based networking organization for call center professionals. "If it's a stepping stone, you're going to learn the business from the customer side and we'll push you throughout the organization — that's a whole different proposition then 'put on a headset and shut up.'"
+
+Following its acquisition of Time Warner Cable in 2016, for example, cable provider Charter Communications announced it would be adding thousands of call center jobs in places like McAllen, Texas, that it had previously contracted out. While the company declined to disclose exactly how many people it had hired, Charter said that call handling times have gone down since bringing the work in-house.
+
+"Investing in its own locally based workforce with more training and better wages and craftsmanship results in higher-quality service and drives value into our business," said spokesman Francois Claude.
+
+Whether US companies employ more American or foreign customer service agents doesn't only depend on economic forces, though. Politics and policy matter, too.
+
+During the Great Recession, the Federal Communications Commission convened a coalition of US call center firms called Jobs4America that pushed clients to keep their operations in the United States by emphasizing the risks and complications of going overseas, such as fraud, travel time for executives and lower customer satisfaction.
+
+Matt Zemon, the former chair of Jobs4America and CEO of an outsourcing firm called Bernard, said they convinced plenty of companies that offshoring wasn't as profitable as they initially thought. "What was the true cost per sale?" Zemon asked. "Sometimes it's just bringing different metrics to someone's attention."
+
+The group ceased operations, however, when President Obama left office and leadership changed at the FCC.
+
+Related: In Paul Ryan's backyard, good jobs are moving to Canada
+
+Still, many companies continue to offshore call center jobs in order to cut costs. Take AT&T, one of the largest employers of customer service agents in the country. According to the Communications Workers of America, a union that represents about 100,000 AT&T workers, the company has closed 44 call centers in the United States over the past seven years, cutting 16,000 jobs.
+
+A company spokesman declined to confirm how many call center workers AT&T has hired or cut over time. However, Convergys, one of AT&T's major outsourcers, said during a recent earnings call that much of its work for the telecom giant has been moved to cheaper foreign call centers.
+
+(AT&T's planned acquisition of Time Warner, CNN's parent company, has been challenged by the federal government. A judge is set to rule on the deal by next month.)
+
+Rather than outsourcing, some companies are starting their own overseas call centers. Amazon (AMZN) has thousands of customer service workers in Costa Rica, according to Site Selection. Uber last year added 500 people to its call center in Hyderabad, India, and Wells Fargo (WFC) laid off call center workers in Pennsylvania last year while adding more jobs in the Philippines. For these reasons, analyst firm Ibisworld projects call center employment in the United States will only grow at 1.3% per year through 2022, slower than the national average.
+
+To try to stem the flow of jobs to other countries, House and Senate Democrats have supported a bill that would require the disclosure of all call centers that big companies send offshore, and for customers to be notified where the worker answering their calls are located. They also wrote a letter this month asking President Trump to issue an executive order that would deny federal contracts to companies with call centers overseas.
+
+That letter has yet to be answered.

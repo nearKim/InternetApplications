@@ -6,7 +6,7 @@ Team project 2 Repository for SNU IE InternetApplications class.
 #### Contributors 
 서울대학교 산업공학과
 
-김인근, 서병욱, 한태구, 이수민 
+김인근, 서병욱, 한태구, 이수민, 한예린
 
 ### 1. CC
 ##### Clustering project

@@ -1,0 +1,66 @@
+﻿What is GDPR? Everything you need to know about Europe's new data law
+A revolution in how companies handle your personal information is happening.
+The General Data Protection Regulation (GDPR) comes into effect across the European Union on May 25, introducing much tougher rules on data privacy.
+
+Here is what you need to know:
+
+What is it?
+
+GDPR is the European Union's new data privacy law.it gives people more control over their personal data and forces companies to make sure the way they collect, process and store data is safe.
+
+The EU hopes to achieve a fundamental change in the way companies think about data -- its central idea is "privacy by default."Who is affected?
+Any organization that holds or uses data on people inside the European Union is subject to the new rules, regardless of where is it based.
+
+Related: Your inbox is being flooded with emails about privacy. Here's why
+
+Companies may not have any direct relationship with Europe and still be subject to the new laws -- for example if they support businesses that have customers inside the EU.
+
+A call center handling customer services for companies that sell products in Europe or a website tracking browsing histories will be impacted.
+
+The cost of complying with the regulation is huge. The International Association of Privacy Professionals and EY estimated that Fortune Global 500 companies spent roughly $7.8 billion to prepare for the new rules.
+
+What do I have to do?
+
+Deal with those emails flooding your inbox. Many companies will have reached out to customers by Friday, asking for consent to keep your personal details.
+
+Scores of firms, including Google (GOOGL), Facebook (FB) and Twitter (TWTR), have also changed their privacy settings in recent weeks in preparation for the new rules. WhatsApp has changed its minimum user age in Europe to 16 from 13.
+
+You will need to agree to the new policies and confirm your age to continue using many services. Children under 16 will need parental consent in most European countries.
+
+Can companies still collect data?
+
+Yes. But only if they can prove that they have a "lawful basis" for doing so.
+
+That could be because they have a contract or legal obligation that allows them to do that.
+
+They can also simply obtain an individual's consent in order to store and process personal data. Such requests must be clear and written in plain language -- no more hiding of consents in general terms and conditions.
+
+They could also be processing data to perform tasks that are in the public interest -- such as the police collecting information about suspected criminals.
+
+Or they might need to collect personal data to protect someone's life. For example, a hospital will be able to access the personal details of an unconscious patient with life-threatening injuries without having to ask for consent.
+
+These companies are getting killed by GDPR
+
+What do companies have to do?
+
+Businesses will have to pay a lot more attention to the security of personal data, and they won't be allowed to hold onto it for longer than is necessary.
+
+Anyone can ask for their personal information to be deleted from a company's servers. There are only a few exceptions -- for example, for law enforcement purposes or if the service the customer wants cannot be provided without the data.
+
+Related: Will the US regulate Facebook? Europe is about to do just that
+
+Business will also be required to tell authorities about any data security breach within 72 hours of discovering it -- a rule that should eliminate big gaps between the business finding out and customers being informed.
+
+They may also have to prove they are handling data correctly. This might mean increased monitoring and documentation. Some may have to hire data protection officers.
+
+Why is all this happening?
+
+GDPR seeks to expand and update rules that have been in place since 1995, and unify a patchwork of different laws into one piece of legislation.
+
+The European Union said the new rules are necessary to protect consumers in an era of huge cyberattacks and data leaks.
+
+What if companies fail to comply?
+
+They face big financial penalties.
+
+European regulators can fine companies up to 4% of annual global sales, which for the big tech firms could run into billions of dollars. Penalties for smaller firms would be capped at €20 million ($23.5 million).

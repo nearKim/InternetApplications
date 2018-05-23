@@ -76,11 +76,13 @@ def getSearchEngineResult(query_dict):
 
             result_dict[qid] = [result.fields()['docID'] for result in results]
 
-            # Expand query by one word
+            # Expand query by k words
+            # For this example, look for 5 top ranked documents and expand query by 2 words
             query_expansion = parse_document(result_dict[qid], 5, 2)
             expand_set = set([ps2(word[0]) for word in query_expansion]).union(set([word[0] for word in query_expansion]))
             q_set = set(q.split())
 
+            # No need to expand words that already exist in 'q'
             unique_set = expand_set - q_set
             q += " " + " ".join(unique_set)
 
@@ -93,6 +95,14 @@ def getSearchEngineResult(query_dict):
 
 
 def parse_document(related_doc_list, n, k):
+    """
+    For a given query, look for first n related_doc_list and count for word occurances.
+    return Counter() object which contains k most occured words.
+    Note that any stop words must be removed.
+    :param n: integer designating the number of docs which will be used for query expansion
+    :param k: integer designating the number of 'expanded query words' which the function will return
+    :return: Counter object containing k most occurred words in n searched documents
+    """
     from whoosh.lang.stopwords import stoplists
     from collections import Counter
 

@@ -3,6 +3,8 @@ from surprise import Dataset
 from surprise import Reader
 from collections import defaultdict
 import numpy as np
+from surprise.model_selection import GridSearchCV
+
 
 def get_top_n(algo, testset, id_list, n=10, user_based=True):
     results = defaultdict(list)
@@ -37,6 +39,7 @@ def get_top_n(algo, testset, id_list, n=10, user_based=True):
     print(results)
     return results
 
+
 np.random.seed(0)
 file_path = 'data/user_artists_log.dat'
 reader = Reader(line_format='user item rating', sep='\t')
@@ -44,7 +47,6 @@ data = Dataset.load_from_file(file_path, reader=reader)
 
 trainset = data.build_full_trainset()
 testset = trainset.build_anti_testset()
-
 
 # 2 - User-based Recommendation
 uid_list = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
@@ -72,14 +74,18 @@ with open('2-1-2_results.txt', 'w') as f:
             f.write('Item ID %s\tscore %s\n' % (iid, str(score)))
         f.write('\n')
 
-# TODO - 2-2. Best Model
-best_algo_ub = None
+# # TODO - 2-2. Best Model
+bsl_options_ub = {'n_epochs': 30, 'method': 'als', 'reg_i': 10, 'reg_u': 0}
+sim_options_ub = {'name': 'msd', 'min_support': 1, 'user_based': True}
 
+best_algo_ub = surprise.KNNBaseline(sim_options=sim_options_ub,
+                                    bsl_options=bsl_options_ub,
+                                    k=70)
 
 # 3 - Item-based Recommendation
 iid_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 # TODO - 3-1-1. KNNBasic, cosine
-sim_options = {'name': 'cosine','user_based':False}
+sim_options = {'name': 'cosine', 'user_based': False}
 algo = surprise.KNNBasic(sim_options=sim_options)
 algo.fit(trainset)
 results = get_top_n(algo, testset, iid_list, n=10, user_based=False)
@@ -91,7 +97,7 @@ with open('3-1-1_results.txt', 'w') as f:
         f.write('\n')
 
 # TODO - 3-1-2. KNNWithMeans, pearson
-sim_options2 = {'name': 'pearson','user_based':False}
+sim_options2 = {'name': 'pearson', 'user_based': False}
 algo = surprise.KNNWithMeans(sim_options=sim_options2)
 algo.fit(trainset)
 results = get_top_n(algo, testset, iid_list, n=10, user_based=False)
@@ -103,8 +109,12 @@ with open('3-1-2_results.txt', 'w') as f:
         f.write('\n')
 
 # TODO - 3-2. Best Model
-best_algo_ib = None
-
+bsl_options_ub = {'n_epochs': 100, 'method': 'als', 'reg_i': 10, 'reg_u': 0}
+sim_options_ub = {'name': 'msd', 'min_support': 1, 'user_based': False}
+#
+best_algo_ib = surprise.KNNBaseline(sim_options=sim_options_ub,
+                                    bsl_options=bsl_options_ub,
+                                    k=50)
 
 # 4 - Matrix-factorization Recommendation
 # TODO - 4-1-1. SVD, n_factors=100, n_epochs=50, biased=False
@@ -119,7 +129,7 @@ with open('4-1-1_results.txt', 'w') as f:
         f.write('\n')
 
 # TODO - 4-1-2. SVD, n_factors=200, n_epochs=100, biased=True
-algo = algo = surprise.SVD(n_factors=200, n_epochs=100, biased=True)
+algo = surprise.SVD(n_factors=200, n_epochs=100, biased=True)
 algo.fit(trainset)
 results = get_top_n(algo, testset, uid_list, n=10, user_based=True)
 with open('4-1-2_results.txt', 'w') as f:
@@ -150,3 +160,10 @@ with open('4-1-4_results.txt', 'w') as f:
         for iid, score in ratings:
             f.write('Item ID %s\tscore %s\n' % (iid, str(score)))
         f.write('\n')
+
+# TODO - 4-2. Best Model
+best_algo_mf = surprise.SVD(n_factors=11,
+                            n_epochs=25,
+                            lr_all=0.01,
+                            reg_all=0.05,
+                            biased=True)
